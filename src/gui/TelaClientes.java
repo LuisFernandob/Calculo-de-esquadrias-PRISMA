@@ -148,7 +148,7 @@ public class TelaClientes extends javax.swing.JFrame implements KeyListener {
 
 		pnEdicao.setBorder(javax.swing.BorderFactory.createTitledBorder("Edição"));
 
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] { "idcliente", "nome",
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] { "id_cliente", "nome",
 				"empresa", "telefone", "endereco", "email", "nascimento", "cnpj", "cpf", "observacoes" }) {
 			boolean[] podeEditar = new boolean[] { false, false, false, false, false, false, false, false, false,
 					false };

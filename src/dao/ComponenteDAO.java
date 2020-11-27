@@ -14,8 +14,11 @@ import sistema.Conexao;
 public class ComponenteDAO {
 	Conexao mysql = new Conexao();
 
+	/**
+	 * Salva o componente no banco de dados
+	 * @param c - Entidade componente
+	 */
 	public void criarComponente(Componente c) {
-
 		Connection conexao = Conexao.getConnection();
 		PreparedStatement stmt = null;
 
@@ -32,33 +35,33 @@ public class ComponenteDAO {
 			stmt.setInt(6, c.getLargura_mm());
 			stmt.setInt(7, c.getLargura_encaixe_mm());
 			stmt.setDouble(8, c.getPeso_por_metro());
-		
 			stmt.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
 
-		} catch (SQLException e) {
-
+		} 
+		catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e);
-		} finally {
+		} 
+		finally {
 			Conexao.closeConnection(conexao, stmt);
 		}
 	}
 
+	/**
+	 * Retorna uma lista dos componentes cadastrados
+	 * @return - a lista de componentes
+	 */
 	public List<Componente> lerTabela(){
-		
 		List<Componente> componentes = new ArrayList<>();
 
 		try {
-		Connection conexao = Conexao.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
-		
-		
-		stmt = conexao.prepareStatement("SELECT * FROM componente");
-		rs = stmt.executeQuery();
-		
+			Connection conexao = Conexao.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			stmt = conexao.prepareStatement("SELECT * FROM componente");
+			rs = stmt.executeQuery();
+			
 			while(rs.next()) {
 				Componente componente = new Componente();
 			
@@ -70,36 +73,35 @@ public class ComponenteDAO {
 			    componente.setLargura_mm(rs.getInt("largura_mm"));
 				componente.setLargura_encaixe_mm(rs.getInt("largura_encaixe_mm"));
 				componente.setPeso_por_metro(rs.getDouble("peso_por_metro"));
-		
 				componentes.add(componente);
-				
 			}
+			
 			Conexao.closeConnection(conexao, stmt, rs);
-		} catch (Exception e) 
-		{JOptionPane.showMessageDialog(null, "Erro ao carregar tabela 'Componentes' "+e);}
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao carregar tabela 'Componentes' "+e);
+		}
 		
 		return componentes;
-		
 	}
-	
 
+	/**
+	 * Retorna uma lista dos componentes cadastrados de acordo com a busca
+	 * @param descricao - o nome/descrição do componente a ser buscado
+	 * @return - a lista de componentes filtrada
+	 */
     public List<Componente> lerParaNome(String descricao) {
-
         Connection conexao = Conexao.getConnection();
-        
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
         List<Componente> componentes = new ArrayList<>();
 
         try {
             stmt = conexao.prepareStatement("SELECT * FROM componente WHERE descricao LIKE ?");
             stmt.setString(1, "%"+descricao+"%");
-            
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-
                 Componente componente = new Componente();
 
 				componente.setCodigo_componente(rs.getString("codigo_componente"));
@@ -110,20 +112,26 @@ public class ComponenteDAO {
 			    componente.setLargura_mm(rs.getInt("largura_mm"));
 				componente.setLargura_encaixe_mm(rs.getInt("largura_encaixe_mm"));
 				componente.setPeso_por_metro(rs.getDouble("peso_por_metro"));
-		
 				componentes.add(componente);
-				
             }
 
-        } catch (Exception e) {        } 
-        finally { Conexao.closeConnection(conexao, stmt, rs);}
-        return componentes;
-        }
-    
-    public Componente lerObjComponente(String codigoComponente) {
-
-        Connection conexao = Conexao.getConnection();
+        } 
+        catch (Exception e) {} 
         
+        finally { 
+        	Conexao.closeConnection(conexao, stmt, rs);
+        }
+        
+        return componentes;
+    }
+    
+    /**
+     * Retorna os dados do componente de acordo com a busca do código
+     * @param codigoComponente - o código a ser buscado
+     * @return - os dados do componente
+     */
+    public Componente lerObjComponente(String codigoComponente) {
+        Connection conexao = Conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Componente componente = new Componente();
@@ -131,12 +139,9 @@ public class ComponenteDAO {
         try {
             stmt = conexao.prepareStatement("SELECT * FROM componente WHERE codigo_componente LIKE ?;");
             stmt.setString(1, codigoComponente);
-            
             rs = stmt.executeQuery();
             
             if (rs.next()) {
-
-                
             	componente.setCodigo_componente(rs.getString("codigo_componente"));
 				componente.setTipo(rs.getString("tipo"));
 				componente.setDescricao(rs.getString("descricao"));
@@ -145,81 +150,89 @@ public class ComponenteDAO {
 			    componente.setLargura_mm(rs.getInt("largura_mm"));
 				componente.setLargura_encaixe_mm(rs.getInt("largura_encaixe_mm"));
 				componente.setPeso_por_metro(rs.getDouble("peso_por_metro"));
-				
-				
-            } else {JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o id do cliente selecionado na tabela!");}
-
-        } catch (Exception e) { JOptionPane.showMessageDialog(null, "Algo deu errado ao tentar encontrar o id do cliente selecionado na tabela!");       } 
-        finally { Conexao.closeConnection(conexao, stmt, rs);}
+            } 
+            else {
+            	JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o id do cliente selecionado na tabela!");
+            }
+        } 
+        catch (Exception e) { 
+        	JOptionPane.showMessageDialog(null, "Algo deu errado ao tentar encontrar o id do cliente selecionado na tabela!");
+        } 
+        finally { 
+        	Conexao.closeConnection(conexao, stmt, rs);
+        }
+        
         return componente;
+    }
+
+    /**
+     * Exclui o componente selecionado do banco de dados
+     * @param c - o componente a ser deletado
+     */
+    public void delete(Componente c) {
+        Connection conexao = Conexao.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conexao.prepareStatement("DELETE FROM componente WHERE codigo_componente = ?");
+            stmt.setString(1, c.getCodigo_componente());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e);
+        } 
+        finally {
+            Conexao.closeConnection(conexao, stmt);
         }
+    }
         
-        
-
-        public void delete(Componente c) {
-
-            Connection conexao = Conexao.getConnection();
+    /**
+     * Atualiza o componente selecionado no banco de dados
+     * @param c - o componente a ser alterado
+     */
+    public void update(Componente c) {
+        Connection conexao = Conexao.getConnection();           
+        PreparedStatement stmt = null;
+        try {
+            stmt = conexao.prepareStatement("UPDATE componente SET codigo_componente = ?, tipo = ?,descricao = ?,"
+            		+ "comprimento_barra_m = ?,unidade = ?,largura_mm = ?,largura_encaixe_mm = ?,peso_por_metro = ?"
+            		+ " WHERE codigo_componente = ?;");              
+            stmt.setString(1, c.getCodigo_componente());
+			stmt.setString(2, c.getTipo());
+			stmt.setString(3, c.getDescricao());
+			stmt.setDouble(4, c.getComprimento_barra_m());
+			stmt.setString(5, c.getUnidade());
+			stmt.setInt(6, c.getLargura_mm());
+			stmt.setInt(7, c.getLargura_encaixe_mm());
+			stmt.setDouble(8, c.getPeso_por_metro());  
+			stmt.setString(9, c.getCodigo_componente());
+            stmt.executeUpdate();
             
-            PreparedStatement stmt = null;
-
-            try {
-                stmt = conexao.prepareStatement("DELETE FROM componente WHERE codigo_componente = ?");
-                stmt.setString(1, c.getCodigo_componente());
-                stmt.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e);
-            } finally {
-                Conexao.closeConnection(conexao, stmt);
-            }
-
+ 			// atualizar a descricao do componente na tabela tipologias
+			PreparedStatement stmt2 = conexao.prepareStatement("UPDATE tipologia SET descricao_componente = ?"
+					+" WHERE codigo_componente = ?;");
+			stmt2.setString(1, c.getDescricao());
+                    stmt2.setString(2, c.getCodigo_componente());
+                    stmt2.executeUpdate();
+			Conexao.closeConnection(stmt2);
+ 			
+			// alterar coluna peso_por_metro da tabela tipologia
+			PreparedStatement stmt3 = conexao.prepareStatement("UPDATE tipologia SET peso_por_metro = ?"
+					+" WHERE codigo_componente = ?;");
+			stmt3.setDouble(1, c.getPeso_por_metro());
+                    stmt3.setString(2, c.getCodigo_componente());
+                    stmt3.executeUpdate();
+			Conexao.closeConnection(stmt3);
+            
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+            
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e);
+        } 
+        finally {
+        	Conexao.closeConnection(conexao, stmt);
         }
-        
-        public void update(Componente c) {
-            Connection conexao = Conexao.getConnection();           
-            PreparedStatement stmt = null;
-            try {
-                stmt = conexao.prepareStatement("UPDATE componente SET codigo_componente = ?, tipo = ?,descricao = ?,"
-                		+ "comprimento_barra_m = ?,unidade = ?,largura_mm = ?,largura_encaixe_mm = ?,peso_por_metro = ?"
-                		+ " WHERE codigo_componente = ?;");              
-                stmt.setString(1, c.getCodigo_componente());
-    			stmt.setString(2, c.getTipo());
-    			stmt.setString(3, c.getDescricao());
-    			stmt.setDouble(4, c.getComprimento_barra_m());
-    			stmt.setString(5, c.getUnidade());
-    			stmt.setInt(6, c.getLargura_mm());
-    			stmt.setInt(7, c.getLargura_encaixe_mm());
-    			stmt.setDouble(8, c.getPeso_por_metro());  
-    			stmt.setString(9, c.getCodigo_componente());
-                stmt.executeUpdate();
-                
-     			// atualizar a descricao do componente na tabela tipologias
-    			PreparedStatement stmt2 = conexao.prepareStatement("UPDATE tipologia SET descricao_componente = ?"
-    					+" WHERE codigo_componente = ?;");
-    			stmt2.setString(1, c.getDescricao());
-                        stmt2.setString(2, c.getCodigo_componente());
-                        stmt2.executeUpdate();
-    			Conexao.closeConnection(stmt2);
-     			
-    			// alterar coluna peso_por_metro da tabela tipologia
-    			PreparedStatement stmt3 = conexao.prepareStatement("UPDATE tipologia SET peso_por_metro = ?"
-    					+" WHERE codigo_componente = ?;");
-    			stmt3.setDouble(1, c.getPeso_por_metro());
-                        stmt3.setString(2, c.getCodigo_componente());
-                        stmt3.executeUpdate();
-    			Conexao.closeConnection(stmt3);
-                
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
-                
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e);
-            } finally {
-                Conexao.closeConnection(conexao, stmt);
-            }
-        }
-  
-
-
-
-
+	}
 }

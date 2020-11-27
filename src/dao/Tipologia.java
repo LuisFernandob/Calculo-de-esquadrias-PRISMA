@@ -14,8 +14,6 @@ public class Tipologia {
 	private String descricaoComponente = new String();	
 	private static int idProdutoAtual;
 	
-	
-	
 	public int getIdTipologia() {
 		return idTipologia;
 	}
@@ -82,5 +80,4 @@ public class Tipologia {
 	public void setOffsetAltura(double offsetAltura) {
 		this.offsetAltura = offsetAltura;
 	}
-	
 }

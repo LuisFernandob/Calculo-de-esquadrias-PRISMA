@@ -72,5 +72,4 @@ public class Componente {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
 }

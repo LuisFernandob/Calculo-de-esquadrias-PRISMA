@@ -3,24 +3,22 @@ import java.time.LocalDateTime;
 
 public class Orcamento {
 	
-	
 	private int idOrcamento,idCliente;
 	private double valorTotal,pesoTotal;
 	private String descricao = new String();
 	private String dataHora = new String();
-
 	
 	public Orcamento(int idCliente,String descricao) {
 		setIdCliente(idCliente);
 		setDescricao(descricao);
 		setDataHora();
 	}
+	
 	public Orcamento(boolean horaAtual) {
 		if(horaAtual==true) {
 			setDataHora();
 		}
 	}
-	
 	
 	public int getIdOrcamento() {
 		return idOrcamento;
@@ -62,9 +60,4 @@ public class Orcamento {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
-	
-	
-	
-	
 }

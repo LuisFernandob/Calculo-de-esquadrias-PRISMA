@@ -38,7 +38,4 @@ public class Produto {
 	public void setFolhas(String folhas) {
 		this.folhas = folhas;
 	}
-	
-	
-	
 }

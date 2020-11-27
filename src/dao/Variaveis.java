@@ -6,7 +6,6 @@ public class Variaveis {
 	private static double precoContramarco;
 	private static double porcentagemMDO;
 	
-	
 	public static double getPrecoAluminio() {
 		return precoAluminio;
 	}
@@ -25,6 +24,4 @@ public class Variaveis {
 	public static void setPrecoContramarco(double precoContramarco) {
 		Variaveis.precoContramarco = precoContramarco;
 	}
-	
-
 }

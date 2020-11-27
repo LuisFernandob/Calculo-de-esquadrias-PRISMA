@@ -74,7 +74,11 @@ public class Cliente {
 		this.observacoes = observacoes;
 	}
 	
-	
+	/**
+	 * Converte a data do formato compatível com o MySQL para o formato dd/mm/aa
+	 * @param data - a data inserida no campo em formato dd-mm-aa
+	 * @return - a data inserida no campo em formato dd/mm/aa
+	 */
 	public String converterDataMysqlParaJTable(String data) {
 		String[] elementos = data.split("-",3);
  		String dataJTable = elementos[2];
@@ -83,19 +87,22 @@ public class Cliente {
  		dataJTable = dataJTable.concat("/");
  		dataJTable = dataJTable.concat(elementos[0]);
 	    	
-	    	return dataJTable;
+	    return dataJTable;
 	}
+	
+	/**
+	 * Converte a data para o formato compatível com o MySQL
+	 * @param data - a data inserida no campo em formato dd/mm/aa
+	 * @return - a data inserida no campo em formato dd/mm/aa
+	 */
 	public String converterDataJTableParaMysql(String data) {
-			
-			String[] elementos = data.split("/",3);
-	 
-	 		String datamysql = elementos[2];
-	 		datamysql = datamysql.concat("-");
-	 		datamysql = datamysql.concat(elementos[1]);
-	 		datamysql = datamysql.concat("-");
-	 		datamysql = datamysql.concat(elementos[0]);
+		String[] elementos = data.split("/",3);
+	 	String datamysql = elementos[2];
+	 	datamysql = datamysql.concat("-");
+	 	datamysql = datamysql.concat(elementos[1]);
+	 	datamysql = datamysql.concat("-");
+	 	datamysql = datamysql.concat(elementos[0]);
 
 	 	return datamysql;
      }
-	
 }
