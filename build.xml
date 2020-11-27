@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="CalculoEsquadriasPrismaVersaoFinalTeste">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../eclipse/jee-2019-09/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="12"/>
+    <property name="source" value="12"/>
+    <path id="CalculoEsquadriasPrismaVersaoFinalTeste.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableAntesIncluirItemOrcamento.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableAntesIncluirOrcamento.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableAntesIncluirTipologia.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarCliente (1).classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarComponente.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarItemOrcamento.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarOrcamento.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarProduto.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableIncluirAlterarTipologia.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.MySQLDumper.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.registro.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.Sistema (2).classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaClientes (1).classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaComponentes.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaItensOrcamento.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaOrcamentos (1).classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaProdutos.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.TelaTipologias.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <path id="run.JTableAntesIncluirComponente.classpath">
+        <path refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        <pathelement location="mysql-connector-java-8.0.18.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="CalculoEsquadriasPrismaVersaoFinalTeste.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="JTableAntesIncluirItemOrcamento">
+        <java classname="guiAntesInclusoes.JTableAntesIncluirItemOrcamento" failonerror="true" fork="yes">
+            <classpath refid="run.JTableAntesIncluirItemOrcamento.classpath"/>
+        </java>
+    </target>
+    <target name="JTableAntesIncluirOrcamento">
+        <java classname="guiAntesInclusoes.JTableAntesIncluirOrcamento" failonerror="true" fork="yes">
+            <classpath refid="run.JTableAntesIncluirOrcamento.classpath"/>
+        </java>
+    </target>
+    <target name="JTableAntesIncluirTipologia">
+        <java classname="guiAntesInclusoes.JTableAntesIncluirTipologia" failonerror="true" fork="yes">
+            <classpath refid="run.JTableAntesIncluirTipologia.classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarCliente (1)">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarCliente" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarCliente (1).classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarComponente">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarComponente" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarComponente.classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarItemOrcamento">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarItemOrcamento" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarItemOrcamento.classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarOrcamento">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarOrcamento" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarOrcamento.classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarProduto">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarProduto" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarProduto.classpath"/>
+        </java>
+    </target>
+    <target name="JTableIncluirAlterarTipologia">
+        <java classname="guiIncluirAlterar.JTableIncluirAlterarTipologia" failonerror="true" fork="yes">
+            <classpath refid="run.JTableIncluirAlterarTipologia.classpath"/>
+        </java>
+    </target>
+    <target name="MySQLDumper">
+        <java classname="sistema.MySQLDumper" failonerror="true" fork="yes">
+            <classpath refid="run.MySQLDumper.classpath"/>
+        </java>
+    </target>
+    <target name="registro">
+        <java classname="sistema.registro" failonerror="true" fork="yes">
+            <classpath refid="run.registro.classpath"/>
+        </java>
+    </target>
+    <target name="Sistema (2)">
+        <java classname="sistema.Sistema" failonerror="true" fork="yes">
+            <env key="Path" value="C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe"/>
+            <classpath refid="run.Sistema (2).classpath"/>
+        </java>
+    </target>
+    <target name="TelaClientes (1)">
+        <java classname="gui.TelaClientes" failonerror="true" fork="yes">
+            <classpath refid="run.TelaClientes (1).classpath"/>
+        </java>
+    </target>
+    <target name="TelaComponentes">
+        <java classname="gui.TelaComponentes" failonerror="true" fork="yes">
+            <classpath refid="run.TelaComponentes.classpath"/>
+        </java>
+    </target>
+    <target name="TelaItensOrcamento">
+        <java classname="gui.TelaItensOrcamento" failonerror="true" fork="yes">
+            <classpath refid="run.TelaItensOrcamento.classpath"/>
+        </java>
+    </target>
+    <target name="TelaOrcamentos (1)">
+        <java classname="gui.TelaOrcamentos" failonerror="true" fork="yes">
+            <classpath refid="run.TelaOrcamentos (1).classpath"/>
+        </java>
+    </target>
+    <target name="TelaProdutos">
+        <java classname="gui.TelaProdutos" failonerror="true" fork="yes">
+            <classpath refid="run.TelaProdutos.classpath"/>
+        </java>
+    </target>
+    <target name="TelaTipologias">
+        <java classname="gui.TelaTipologias" failonerror="true" fork="yes">
+            <classpath refid="run.TelaTipologias.classpath"/>
+        </java>
+    </target>
+    <target name="JTableAntesIncluirComponente">
+        <java classname="guiAntesInclusoes.JTableAntesIncluirComponente" failonerror="true" fork="yes">
+            <classpath refid="run.JTableAntesIncluirComponente.classpath"/>
+        </java>
+    </target>
+</project>
